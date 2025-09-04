@@ -1,0 +1,7 @@
+/* Kiji glow halo animation */
+@keyframes kiji-halo {
+  to { transform: rotate(360deg); }
+}
+.animate-kiji-halo {
+  animation: kiji-halo 16s linear infinite;
+}

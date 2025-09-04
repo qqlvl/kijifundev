@@ -1,0 +1,4 @@
+/* Add this to app/globals.css */
+@keyframes spin-halo {
+  to { transform: rotate(360deg); }
+}

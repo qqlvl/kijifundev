@@ -7,3 +7,6 @@ html, body {
   background: #0E0F12;
   color: white;
 }
+
+@keyframes kiji-halo { to { transform: rotate(360deg); } }
+.animate-kiji-halo { animation: kiji-halo 16s linear infinite; }
