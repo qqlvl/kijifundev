@@ -1,6 +1,13 @@
-import Roulette from "@/components/Roulette";
+"use client";
 
-const players = [
+import Roulette from "@/components/Roulette";
+import Sidebar from "@/components/Sidebar";
+import Chat from "@/components/Chat";
+import LiveFeed from "@/components/LiveFeed";
+import BetPanel from "@/components/BetPanel";
+import { useState } from "react";
+
+const initial = [
   { id: "1", name: "Alice", stake: 40, color: "#36F2B3" },
   { id: "2", name: "Bob", stake: 30, color: "#FF3B3B" },
   { id: "3", name: "Charlie", stake: 20, color: "#FFD93D" },
@@ -8,26 +15,41 @@ const players = [
 ];
 
 export default function Home() {
+  const [players, setPlayers] = useState(initial);
+
   return (
-    <main className="flex flex-col md:flex-row items-center justify-center min-h-screen p-6 gap-6">
-      <div className="flex-1 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-6 text-accent">Kiji.fun</h1>
-        <Roulette players={players} />
+    <main className="min-h-screen p-4 md:p-6 flex flex-col gap-4">
+      {/* Top grid: Sidebar | Main | Chat */}
+      <div className="grid grid-cols-1 md:grid-cols-[16rem_1fr_20rem] gap-4">
+        <Sidebar />
+
+        <section className="flex flex-col gap-4">
+          <div className="bg-white/5 rounded-2xl p-4 flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold">
+                Kiji.fun <span className="text-accent">Play</span>
+              </h1>
+              <div className="text-white/60 text-sm">Fair PvP Roulette • Solana • VRF • Jupiter verified tokens</div>
+            </div>
+          </div>
+
+          {/* Roulette block */}
+          <div className="bg-white/5 rounded-2xl p-4 flex items-center justify-center">
+            <Roulette players={players} />
+          </div>
+
+          {/* Bet panel */}
+          <BetPanel onSpin={() => {
+            // simple demo: randomize players stakes to see new proportions
+            setPlayers(prev => prev.map(p => ({...p, stake: Math.max(5, Math.round(Math.random()*60)) })));
+          }} />
+        </section>
+
+        <Chat />
       </div>
 
-      <div className="w-full md:w-80 h-96 bg-white/5 rounded-xl p-3">
-        <h2 className="font-semibold mb-2">Community Chat</h2>
-        <div className="h-[85%] overflow-y-auto space-y-1 text-sm">
-          <div><span className="text-accent">Alice:</span> gm kiji</div>
-          <div><span className="text-soft">Bob:</span> spin wen??</div>
-          <div><span className="text-yellow-400">Charlie:</span> EZ WIN</div>
-        </div>
-        <input
-          type="text"
-          placeholder="Type..."
-          className="mt-2 w-full rounded-md bg-black/40 border border-white/10 px-2 py-1 text-sm"
-        />
-      </div>
+      {/* Bottom: Live feed */}
+      <LiveFeed />
     </main>
   );
 }
