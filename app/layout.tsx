@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kiji.fun",
-  description: "Fair PvP Roulette on Solana – Powered by VRF & Escrow",
+  description: "",
   icons: [{ rel: "icon", url: "/favicon.ico" }]
 };
 
