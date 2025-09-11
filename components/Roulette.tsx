@@ -137,7 +137,7 @@ export default function Roulette({
                 d={arcPath(cx, cy, rOuter, rInner, start, end)}
                 fill={p.color}
                 stroke="#0E0F12"
-                strokeWidth={2}
+                strokeWidth={1}
               />
             ))}
 

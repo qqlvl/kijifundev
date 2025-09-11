@@ -8,5 +8,5 @@ html, body {
   color: white;
 }
 
-@keyframes kiji-halo { to { transform: rotate(360deg); } }
-.animate-kiji-halo { animation: kiji-halo 16s linear infinite; }
+/* @keyframes kiji-halo { to { transform: rotate(360deg); } }
+.animate-kiji-halo { animation: kiji-halo 16s linear infinite; } */
